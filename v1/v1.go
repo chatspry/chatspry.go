@@ -19,6 +19,7 @@ func createHTTPRequest(c *Client, stem string) (*http.Request, error) {
 }
 
 func parseBody(resp *http.Response, v interface{}) error {
+	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return err
